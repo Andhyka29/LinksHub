@@ -14,10 +14,14 @@ const app = express();
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static("public"));
 app.use(session({
-    secret: process.env.SESSION_SECRET || 'default-secret-key-change-in-production',
+    secret: process.env.SESSION_SECRET,
     resave: false,
     saveUninitialized: false,
-    cookie: { maxAge: 1000 * 60 * 60 * 24 } // 1 hari
+    cookie: { 
+        maxAge: 1000 * 60 * 60 * 24,
+        secure: process.env.NODE_ENV === 'production', // ← tambah ini
+        sameSite: 'lax' // ← tambah ini
+    }
 }));
 
 // View Engine
