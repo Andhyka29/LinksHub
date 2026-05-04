@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="icon" type="image/png" href="/favicon.png">
+    <title>Register - LinkHub</title>
+    <style>
+        :root {
+            --bg-gradient: linear-gradient(135deg, #1c1c1e 0%, #2c2c2e 50%, #1c1c1e 100%);
+            --card-bg: #0f0f0f66;
+            --text-primary: #f5f5f7;
+            --text-secondary: #8e8e93;
+            --accent-red: #e74c3c;
+            --border: rgba(255,255,255,0.08);
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", system-ui, sans-serif;
+            background: var(--bg-gradient);
+            color: var(--text-primary);
+            min-height: 100vh;
+        }
+        .card {
+            background: var(--card-bg);
+            border-radius: 20px;
+            border: 1px solid var(--border);
+            padding: 40px;
+        }
+        .input-field {
+            background: rgba(255,255,255,0.08);
+            border: 1px solid rgba(255,255,255,0.12);
+            border-radius: 12px;
+            color: var(--text-primary);
+            transition: all 0.15s ease;
+        }
+        .input-field::placeholder {
+            color: var(--text-secondary);
+        }
+        .input-field:focus {
+            outline: none;
+            border-color: var(--accent-red);
+            box-shadow: 0 0 0 2px rgba(231, 76, 60, 0.2);
+        }
+        .btn-primary {
+            background: var(--accent-red);
+            border-radius: 980px;
+            font-weight: 600;
+            transition: all 0.15s ease;
+        }
+        .btn-primary:hover {
+            opacity: 0.9;
+        }
+        .subtitle {
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--text-secondary);
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+        }
+    </style>
+</head>
+<body class="flex justify-center items-center min-h-screen px-4">
+    <div class="card w-full max-w-[400px] sm:max-w-[440px] px-6 py-6 sm:px-10 sm:py-10">
+        <div class="text-center mb-8">
+            <div class="text-4xl mb-2">🔗</div>
+            <h1 class="text-2xl font-semibold text-white">Register for LinkHub</h1>
+            <p class="subtitle">Create your account</p>
+        </div>
+
+        <% if (error) { %>
+        <p class="text-red-400 text-sm mb-4 text-center"><%= error %></p>
+        <% } %>
+
+        <form action="/register" method="POST" class="space-y-4">
+            <input name="username" placeholder="Username" class="input-field w-full h-12 sm:h-auto py-3 px-4 outline-none" required>
+            <input name="email" type="email" placeholder="Email" class="input-field w-full h-12 sm:h-auto py-3 px-4 outline-none" required>
+            <input name="password" type="password" placeholder="Password" class="input-field w-full h-12 sm:h-auto py-3 px-4 outline-none" required>
+
+            <button class="btn-primary text-white h-12 sm:h-auto py-3 w-full">
+                Register
+            </button>
+        </form>
+
+        <p class="text-center text-gray-400 mt-6 text-sm">
+            Already have an account? 
+            <a href="/login" class="text-white hover:text-gray-300 transition-colors">Login here</a>
+        </p>
+    </div>
+</body>
+</html>
